@@ -16,7 +16,7 @@ const Products = ({ products }: ProductsProps) => {
           className="flex items-center justify-between gap-10 border-b px-5 py-3"
         >
           <div>
-            <h3 className="text-sm font-medium">{product.name}</h3>
+            <h4 className="text-sm font-medium">{product.name}</h4>
             <p className="line-clamp-2 text-sm text-muted-foreground">
               {product.description}
             </p>
@@ -32,6 +32,7 @@ const Products = ({ products }: ProductsProps) => {
               src={product.imageUrl}
               alt={product.name}
               fill
+              sizes="82px"
               className="rounded-lg bg-muted-foreground/20 object-contain"
             />
           </div>
