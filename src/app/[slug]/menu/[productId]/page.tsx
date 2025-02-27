@@ -16,7 +16,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   }
 
   return (
-    <section>
+    <section className="flex h-full flex-col">
       <ProductHeader product={product} />
       <div className="-mt-5 rounded-lg bg-white p-5">
         <h2>{product.name}</h2>
