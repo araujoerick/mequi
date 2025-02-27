@@ -28,7 +28,7 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-  const { toggleCart } = useContext(CartContext);
+  const { toggleCart, addProduct } = useContext(CartContext);
 
   const restaurant = product.restaurant;
 
@@ -38,6 +38,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     setQuantity((prev) => Math.max(prev - 1, 1));
 
   const handleAddToCart = () => {
+    addProduct({ ...product, quantity });
     toggleCart();
   };
 
