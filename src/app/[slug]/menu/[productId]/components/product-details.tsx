@@ -21,7 +21,10 @@ interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
     include: {
       restaurant: {
-        select: { avatarImageUrl: true; name: true };
+        select: {
+          name: true;
+          avatarImageUrl: true;
+        };
       };
     };
   }>;
@@ -29,18 +32,26 @@ interface ProductDetailsProps {
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
   const { toggleCart, addProduct } = useContext(CartContext);
-
-  const restaurant = product.restaurant;
-
   const [quantity, setQuantity] = useState<number>(1);
-  const handleIncreaseQuantity = () => setQuantity((prev) => prev + 1);
-  const handleDecreaseQuantity = () =>
-    setQuantity((prev) => Math.max(prev - 1, 1));
-
+  const handleDecreaseQuantity = () => {
+    setQuantity((prev) => {
+      if (prev === 1) {
+        return 1;
+      }
+      return prev - 1;
+    });
+  };
+  const handleIncreaseQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
   const handleAddToCart = () => {
-    addProduct({ ...product, quantity });
+    addProduct({
+      ...product,
+      quantity,
+    });
     toggleCart();
   };
+  const restaurant = product.restaurant;
 
   return (
     <>
