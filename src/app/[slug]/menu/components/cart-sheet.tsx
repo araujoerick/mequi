@@ -19,7 +19,7 @@ const CartSheet = () => {
         className="w-full max-w-[347px] px-5 py-8 [&>button>svg]:h-5 [&>button>svg]:w-5 [&>button]:right-5 [&>button]:top-8 [&>button]:mt-1"
       >
         <SheetHeader>
-          <SheetTitle className="text-left">Sacola</SheetTitle>
+          <SheetTitle className="mb-3.5 text-left">Sacola</SheetTitle>
         </SheetHeader>
         {products.map((product) => (
           <CartItem key={product.id} product={product} />

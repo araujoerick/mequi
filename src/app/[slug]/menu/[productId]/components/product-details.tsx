@@ -1,12 +1,7 @@
 "use client";
 
 import { Prisma } from "@prisma/client";
-import {
-  ChefHatIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  NotepadTextIcon,
-} from "lucide-react";
+import { ChefHatIcon, NotepadTextIcon } from "lucide-react";
 import Image from "next/image";
 import { useContext, useState } from "react";
 
@@ -15,6 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/helpers/format-currency";
 
 import CartSheet from "../../components/cart-sheet";
+import ProductQuantityControls from "../../components/product-quantity-controls";
 import { CartContext } from "../../contexts/cart";
 
 interface ProductDetailsProps {
@@ -79,23 +75,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                 {formatCurrency(product.price)}
               </h3>
 
-              <div className="flex items-center gap-2 text-center">
-                <Button
-                  variant="secondary"
-                  className="h-8 w-8 rounded-xl"
-                  onClick={handleDecreaseQuantity}
-                >
-                  <ChevronLeftIcon />
-                </Button>
-                <p className="w-5">{quantity}</p>
-                <Button
-                  variant="destructive"
-                  className="h-8 w-8 rounded-xl"
-                  onClick={handleIncreaseQuantity}
-                >
-                  <ChevronRightIcon />
-                </Button>
-              </div>
+              <ProductQuantityControls
+                quantity={quantity}
+                onDecrease={handleDecreaseQuantity}
+                onIncrease={handleIncreaseQuantity}
+              />
             </div>
           </div>
 
