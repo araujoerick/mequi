@@ -145,7 +145,7 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
                 </Button>
                 <DrawerClose asChild>
                   <Button variant="outline" className="w-full rounded-full">
-                    Cancel
+                    Cancelar
                   </Button>
                 </DrawerClose>
               </DrawerFooter>
