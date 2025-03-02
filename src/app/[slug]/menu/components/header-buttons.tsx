@@ -9,15 +9,14 @@ const HeaderButtons = () => {
   const handleBackClick = () => router.back();
   const pathname = usePathname();
   const isOrderPage = pathname.includes("/orders");
-  console.log(isOrderPage);
 
   return (
     <>
       <Button
         variant="secondary"
         size="icon"
-        className="absolute left-4 top-4 z-50 rounded-full bg-white"
         onClick={handleBackClick}
+        className="absolute left-4 top-4 z-50 rounded-full bg-white"
       >
         <ChevronLeftIcon />
       </Button>

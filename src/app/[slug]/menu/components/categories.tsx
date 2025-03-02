@@ -3,11 +3,14 @@
 import { Prisma } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { formatCurrency } from "@/helpers/format-currency";
 
+import { CartContext } from "../contexts/cart";
+import CartSheet from "./cart-sheet";
 import Products from "./products";
 
 interface RestaurantCategoriesProps {
@@ -23,6 +26,9 @@ type MenuCategoryWithProducts = Prisma.MenuCategoryGetPayload<{
 const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
   const [selectedCategory, setSelectedCategory] =
     useState<MenuCategoryWithProducts>(restaurant.menuCategories[0]);
+
+  const { products, total, totalQuantity, toggleCart } =
+    useContext(CartContext);
 
   const handleCategoryClick = (category: MenuCategoryWithProducts) => {
     setSelectedCategory(category);
@@ -80,6 +86,25 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
 
       <h3 className="px-5 font-semibold">{selectedCategory.name}</h3>
       <Products products={selectedCategory.products} />
+
+      {products.length > 0 && (
+        <div className="sticky bottom-0 left-0 right-0 flex w-full items-center justify-between border-t bg-white p-5 shadow-[0_-5px_10px_rgba(0,0,0,.1)]">
+          <div>
+            <p className="text-xs text-muted-foreground">Total dos pedidos</p>
+            <p className="text-sm font-semibold">
+              {formatCurrency(total)}
+              <span className="text-xs font-normal text-muted-foreground">
+                {" "}
+                / {totalQuantity} {totalQuantity > 1 ? "itens" : "item"}
+              </span>
+            </p>
+          </div>
+          <Button variant="destructive" onClick={toggleCart}>
+            Ver sacola
+          </Button>
+          <CartSheet />
+        </div>
+      )}
     </div>
   );
 };
