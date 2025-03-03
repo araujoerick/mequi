@@ -52,7 +52,7 @@ const OrderList = ({ orders }: OrderListProps) => {
           <Card key={order.id}>
             <CardContent className="space-y-4 p-5">
               <div
-                className={`w-fit rounded-full px-2 py-1 text-xs font-semibold text-white ${([OrderStatus.FINISHED] as OrderStatus[]).includes(order.status) ? "bg-green-500 text-white" : "bg-gray-400/10 text-gray-400"} ${OrderStatus.IN_PREPARATION.includes(order.status) && "bg-yellow-400/15 text-yellow-400"} `}
+                className={`w-fit rounded-full px-2 py-1 text-xs font-semibold text-white ${([OrderStatus.FINISHED] as OrderStatus[]).includes(order.status) && "bg-green-500 text-white"} ${OrderStatus.IN_PREPARATION.includes(order.status) && "bg-yellow-400/15 text-yellow-400"} ${([OrderStatus.PENDING] as OrderStatus[]).includes(order.status) && "bg-gray-500/10 text-gray-500"}`}
               >
                 {getStatusLabel(order.status)}
               </div>
