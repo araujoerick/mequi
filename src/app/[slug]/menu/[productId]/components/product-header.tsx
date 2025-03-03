@@ -16,6 +16,7 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
       <Image
         src={product.imageUrl}
         alt={product.name}
+        priority
         fill
         className="-z-20 bg-muted-foreground/20 object-contain"
       />

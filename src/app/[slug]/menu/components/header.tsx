@@ -16,6 +16,7 @@ const RestaurantHeader = ({ restaurant }: RestaurantHeaderProps) => {
       <Image
         src={restaurant.coverImageUrl}
         alt={restaurant.name}
+        priority
         fill
         className="-z-20 object-cover"
       />
